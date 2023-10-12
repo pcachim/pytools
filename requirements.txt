@@ -10,6 +10,8 @@ attrs==23.1.0
     # via
     #   jsonschema
     #   referencing
+beautifulsoup4==4.12.2
+    # via favicon
 blinker==1.6.3
     # via streamlit
 cachetools==5.3.1
@@ -20,10 +22,27 @@ charset-normalizer==3.3.0
     # via requests
 click==8.1.7
     # via streamlit
+contourpy==1.1.1
+    # via matplotlib
+cycler==0.12.1
+    # via matplotlib
+entrypoints==0.4
+    # via streamlit-extras
+faker==19.9.0
+    # via streamlit-faker
+favicon==0.7.0
+    # via markdownlit
+fonttools==4.43.1
+    # via matplotlib
 gitdb==4.0.10
     # via gitpython
 gitpython==3.1.37
     # via streamlit
+htbuilder==0.6.2
+    # via
+    #   markdownlit
+    #   st-annotated-text
+    #   streamlit-extras
 idna==3.4
     # via requests
 importlib-metadata==6.8.0
@@ -32,19 +51,38 @@ jinja2==3.1.2
     # via
     #   altair
     #   pydeck
+    #   streamlit-camera-input-live
+    #   streamlit-image-coordinates
+    #   streamlit-keyup
 jsonschema==4.19.1
     # via altair
 jsonschema-specifications==2023.7.1
     # via jsonschema
+kiwisolver==1.4.5
+    # via matplotlib
+lxml==4.9.3
+    # via markdownlit
+markdown==3.5
+    # via
+    #   markdownlit
+    #   pymdown-extensions
 markdown-it-py==3.0.0
     # via rich
+markdownlit==0.0.7
+    # via streamlit-extras
 markupsafe==2.1.3
     # via jinja2
+matplotlib==3.8.0
+    # via streamlit-faker
 mdurl==0.1.2
     # via markdown-it-py
+more-itertools==10.1.0
+    # via htbuilder
 numpy==1.26.0
     # via
     #   altair
+    #   contourpy
+    #   matplotlib
     #   pandas
     #   pyarrow
     #   pydeck
@@ -52,35 +90,50 @@ numpy==1.26.0
 packaging==23.2
     # via
     #   altair
+    #   matplotlib
     #   streamlit
 pandas==2.1.1
     # via
     #   altair
     #   streamlit
 pillow==10.0.1
-    # via streamlit
+    # via
+    #   matplotlib
+    #   streamlit
 protobuf==4.24.4
-    # via streamlit
+    # via
+    #   streamlit
+    #   streamlit-extras
 pyarrow==13.0.0
     # via streamlit
 pydeck==0.8.1b0
     # via streamlit
 pygments==2.16.1
     # via rich
+pymdown-extensions==10.3
+    # via markdownlit
+pyparsing==3.1.1
+    # via matplotlib
 pypdf==3.16.3
     # via -r requirements.in
 python-dateutil==2.8.2
     # via
+    #   faker
+    #   matplotlib
     #   pandas
     #   streamlit
 pytz==2023.3.post1
     # via pandas
+pyyaml==6.0.1
+    # via pymdown-extensions
 referencing==0.30.2
     # via
     #   jsonschema
     #   jsonschema-specifications
 requests==2.31.0
-    # via streamlit
+    # via
+    #   favicon
+    #   streamlit
 rich==13.6.0
     # via streamlit
 rpds-py==0.10.4
@@ -91,8 +144,44 @@ six==1.16.0
     # via python-dateutil
 smmap==5.0.1
     # via gitdb
+soupsieve==2.5
+    # via beautifulsoup4
+st-annotated-text==4.0.1
+    # via streamlit-extras
 streamlit==1.27.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   markdownlit
+    #   streamlit-camera-input-live
+    #   streamlit-card
+    #   streamlit-embedcode
+    #   streamlit-extras
+    #   streamlit-faker
+    #   streamlit-image-coordinates
+    #   streamlit-keyup
+    #   streamlit-toggle-switch
+    #   streamlit-vertical-slider
+streamlit-camera-input-live==0.2.0
+    # via streamlit-extras
+streamlit-card==0.0.61
+    # via streamlit-extras
+streamlit-embedcode==0.1.2
+    # via streamlit-extras
+streamlit-extras==0.3.4
+    # via
+    #   -r requirements.in
+    #   markdownlit
+    #   streamlit-faker
+streamlit-faker==0.0.2
+    # via streamlit-extras
+streamlit-image-coordinates==0.1.6
+    # via streamlit-extras
+streamlit-keyup==0.2.0
+    # via streamlit-extras
+streamlit-toggle-switch==1.0.2
+    # via streamlit-extras
+streamlit-vertical-slider==1.0.2
+    # via streamlit-extras
 tenacity==8.2.3
     # via streamlit
 toml==0.10.2
@@ -111,5 +200,7 @@ urllib3==2.0.6
     # via requests
 validators==0.22.0
     # via streamlit
+watchdog==3.0.0
+    # via -r requirements.in
 zipp==3.17.0
     # via importlib-metadata
