@@ -51,20 +51,38 @@ def remove_images(input_path, output_path):
         writer.write(f)
 
 
-def reduce_image_quality(input_path, output_path, quality=80):
+def reduce_image_quality(input_path, quality=80):
     reader = PdfReader(input_path)
     writer = PdfWriter()
 
     for page in reader.pages:
         writer.add_page(page)
 
-    for page in writer.pages:
-        for img in page.images:
-            img.replace(img.image, quality)
+        for page in writer.pages:
+            for img in page.images:
+                st.write(f"image {quality}\n")
+                # img = img.save(io.BytesIO(), format='JPEG', quality=quality, optimize=True)
+                img.replace(img.image, quality)
 
-    with open(output_path, "wb") as f:
-        writer.write(f)
-        
+    output = BytesIO()
+    writer.write(output)
+    writer.close()
+    return output        
+
+
+def extract_images(input_path):
+    reader = PdfReader(input_path)
+    writer = PdfWriter()
+
+    for page in reader.pages:
+        writer.add_page(page)
+
+    writer.remove_images()
+
+    output = BytesIO()
+    writer.write(output)
+    writer.close()
+    return output        
 
 
 st.title("PDF Tools")
@@ -97,6 +115,28 @@ with col1:
         )
 
 
+    st.subheader("Extract images")
+    extractimagespdf_button = st.button("Extract images")
+    #imagequality_slider = st.slider("Image quality", min_value=0, max_value=100, value=80)
+
+    if extractimagespdf_button and len(uploaded_file) == 1:
+        # Generate the PDF
+        pdf_file = extract_images(*uploaded_file)
+        path = Path(uploaded_file[0].name)
+        if filename == "":
+            filename = path.stem + "_noimages"
+
+        # Provide a download button for the PDF
+        st.download_button(
+            label="Download PDF",
+            data=pdf_file,
+            key="pdf_extract_images",
+            on_click=None,
+            args=None,
+            file_name=filename + ".pdf"
+        )
+
+
 with col2:
     st.subheader("Reduce file size")
     reducepdf_button = st.button("Reduce size")
@@ -112,8 +152,32 @@ with col2:
         st.download_button(
             label="Download merged PDF",
             data=pdf_file,
-            key="pdf_download",
+            key="pdf_reduce_size",
             on_click=None,
             args=None,
             file_name=filename + ".pdf"
         )
+
+
+    st.subheader("Reduce image quality")
+    extractimagespdf_button = st.button("Reduce image quality")
+    imagequality_slider = st.slider("Image quality", min_value=0, max_value=100, value=80)
+
+    if extractimagespdf_button and len(uploaded_file) == 1:
+        # Generate the PDF
+        pdf_file = reduce_image_quality(*uploaded_file, quality=imagequality_slider)
+        path = Path(uploaded_file[0].name)
+        if filename == "":
+            filename = path.stem + "_smallimages"
+
+        # Provide a download button for the PDF
+        st.download_button(
+            label="Download PDF",
+            data=pdf_file,
+            key="pdf_reduce_images",
+            on_click=None,
+            args=None,
+            file_name=filename + ".pdf"
+        )
+        
+        
