@@ -99,10 +99,10 @@ def extract_images(input_path):
     return output        
 
 
-st.title("PDF Tools")
+st.title("GPX/KML/KMZ Tools")
 
 # Allow the user to upload a PDF file
-uploaded_file = st.file_uploader("Choose input PDF file (s)", type="pdf", accept_multiple_files=True)
+uploaded_file = st.file_uploader("Choose input GPX/KMZ file (s)", type=["pdf", "gpx", "kml", "kmz"], accept_multiple_files=True)
 filename = st.text_input("Output filename", value="")
 
 # Write in two columns
